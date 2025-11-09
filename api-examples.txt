@@ -1,0 +1,30 @@
+POST /api/cameras
+{
+  "name": "Main Entrance Camera",
+  "ip_address": "192.168.1.100",
+  "port": 554,
+  "username": "admin",
+  "password": "password123",
+  "stream_url": "rtsp://192.168.1.100:554/stream1",
+  "location": "Main Entrance",
+  "status": "online",
+  "camera_type": "IP",
+  "resolution": "1080p",
+  "frame_rate": 30,
+  "manufacturer": "Hikvision",
+  "model": "DS-2CD2142FWD-I"
+}
+
+GET /api/cameras
+
+GET /api/cameras/1
+
+PUT /api/cameras/1
+{
+  "status": "offline",
+  "location": "Main Entrance - Updated",
+  "frame_rate": 60
+}
+
+DELETE /api/cameras/1
+
