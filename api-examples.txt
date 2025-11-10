@@ -1,3 +1,5 @@
+# Standard CRUD Operations
+
 POST /api/cameras
 {
   "name": "Main Entrance Camera",
@@ -28,3 +30,87 @@ PUT /api/cameras/1
 
 DELETE /api/cameras/1
 
+# Multi-threaded Batch Operations
+
+POST /api/cameras/bulk
+{
+  "cameras": [
+    {
+      "name": "Camera 1",
+      "ip_address": "192.168.1.101",
+      "port": 554,
+      "username": "admin",
+      "password": "pass123",
+      "stream_url": "rtsp://192.168.1.101:554/stream1",
+      "location": "Location 1",
+      "status": "online",
+      "camera_type": "IP",
+      "resolution": "1080p",
+      "frame_rate": 30,
+      "manufacturer": "Hikvision",
+      "model": "DS-2CD2142FWD-I"
+    },
+    {
+      "name": "Camera 2",
+      "ip_address": "192.168.1.102",
+      "port": 554,
+      "username": "admin",
+      "password": "pass123",
+      "stream_url": "rtsp://192.168.1.102:554/stream1",
+      "location": "Location 2",
+      "status": "online",
+      "camera_type": "IP",
+      "resolution": "720p",
+      "frame_rate": 25,
+      "manufacturer": "Dahua",
+      "model": "IPC-HDW1230M"
+    }
+  ]
+}
+
+PUT /api/cameras/bulk
+{
+  "updates": [
+    {
+      "id": 1,
+      "update": {
+        "status": "offline",
+        "frame_rate": 60
+      }
+    },
+    {
+      "id": 2,
+      "update": {
+        "location": "Updated Location 2",
+        "resolution": "1080p"
+      }
+    }
+  ]
+}
+
+POST /api/cameras/concurrent
+{
+  "ids": [1, 2, 3, 4, 5]
+}
+
+# Camera Status Management
+
+GET /api/cameras/active
+
+GET /api/cameras/inactive
+
+POST /api/cameras/1/activate
+
+POST /api/cameras/1/deactivate
+
+POST /api/cameras/1/toggle
+
+POST /api/cameras/bulk/activate
+{
+  "ids": [1, 2, 3, 4, 5]
+}
+
+POST /api/cameras/bulk/deactivate
+{
+  "ids": [1, 2, 3, 4, 5]
+}
